@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/vhr
+    username: root
+    password: 123456
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: 1ms
+        min-idle: 0
+  cache:
+    cache-names: menu_cache
+    redis:
+      time-to-live: 1800s
+
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+server:
+  port: 8082
