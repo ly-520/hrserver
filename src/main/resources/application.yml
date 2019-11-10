@@ -1,12 +1,12 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/vhr
+    url: jdbc:mysql://47.93.96.60:3306/vhr
     username: root
-    password: 123456
+    password: 888999
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 47.93.96.60
     port: 6379
     password: 123456
     jedis:
@@ -22,5 +22,6 @@ spring:
 
 mybatis:
   config-location: classpath:/mybatis-config.xml
+  mapper-locations: classpath:/mapper/*.xml
 server:
   port: 8082

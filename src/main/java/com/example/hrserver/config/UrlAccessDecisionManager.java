@@ -1,4 +1,4 @@
-package com.example.hrserver.Interpector;/**
+package com.example.hrserver.config;/**
  * @author ljt
  * @Title: UrlAccessDecisionManager
  * @ProjectName hrserver
@@ -15,16 +15,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * @author
- * @description
- * @date 2019/11/7
- *
- */
+@Component
 public class UrlAccessDecisionManager implements AccessDecisionManager {
   @Override
   public void decide(Authentication auth, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {

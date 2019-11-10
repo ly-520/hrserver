@@ -1,8 +1,11 @@
 package com.example.hrserver.dao;
 
 import com.example.hrserver.entity.Hr;
+import com.example.hrserver.entity.Role;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author ljt
@@ -15,4 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HrMapper {
     Hr loadUserByUsername(@Param("username") String username);
+
+    List<Role> getRolesByHrId(Long id);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.hrserver.dao.HrMapper">
-  <resultMap id="BaseResultMapper" type="com.example.hrserver.entity.Hr">
+  <resultMap id="BaseResultMap" type="com.example.hrserver.entity.Hr">
       <id  column="id" property="id"/>
     <result column="name" property="name" />
     <result column="phone" property="phone" />
@@ -14,14 +14,32 @@
     <result column="userface" property="userface" />
   </resultMap>
 
+  <resultMap id="lazyLoadRoles" type="com.example.hrserver.entity.Hr" extends="BaseResultMap">
+    <collection property="roles" ofType="com.example.hrserver.entity.Role"
+                select="com.example.hrserver.dao.HrMapper.getRolesByHrId" column="id">
+    </collection>
+  </resultMap>
+
+  <resultMap id="eagerLoadRoles" type="com.example.hrserver.entity.Hr" extends="BaseResultMap">
+    <collection property="roles" ofType="com.example.hrserver.entity.Role">
+      <id property="id" column="rid"/>
+      <result property="name" column="rname"/>
+      <result property="nameZh" column="rnameZh"/>
+    </collection>
+  </resultMap>
+
   <sql id="BaseColumn">
     id,name, phone,telephone,address,enabled,username,password,remark,userface
   </sql>
 
-  <select id="loadUserByUsername" >
+  <select id="loadUserByUsername" resultMap="lazyLoadRoles">
     SELECT <include refid="BaseColumn" />
     FROM hr
-    WHERE name = #{username}
+    WHERE username = #{username}
   </select>
+
+  <select id="getRolesByHrId" resultType="com.example.hrserver.entity.Role">
+        SELECT r.* FROM hr_role h,role r where h.rid=r.id AND h.hrid=#{id}
+    </select>
 
 </mapper>

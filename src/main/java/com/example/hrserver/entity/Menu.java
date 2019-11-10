@@ -9,6 +9,7 @@ package com.example.hrserver.entity;/**
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  *
  */
 @Data
-public class Menu {
+public class Menu implements Serializable {
   private int id;
   private String url;
   private String path;

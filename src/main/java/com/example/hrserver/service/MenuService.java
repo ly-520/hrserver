@@ -8,17 +8,12 @@ package com.example.hrserver.service;/**
  */
 
 import com.example.hrserver.entity.Menu;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author
- * @description
- * @date 2019/11/7
- *
- */
-@Service
 public interface MenuService {
     List<Menu> getAllMenu();
 }
